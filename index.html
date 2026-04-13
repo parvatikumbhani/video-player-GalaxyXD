@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GalaxyXD | YouTube Bypass</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+    
+    @font-face {
+      font-family: "Starborn";
+      src: url("fonts/Starborn.otf") format("opentype");
+    }
+
+    body {
+      margin: 0;
+      background: radial-gradient(circle at top right, #1e1b4b, #09090b);
+      font-family: "Inter", sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+
+    /* Modern Glass Card */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Animated Title */
+    .rainbow-title {
+      font-family: "Starborn", sans-serif;
+      font-size: 32px;
+      letter-spacing: 1px;
+      background: linear-gradient(
+        90deg,
+        #a78bfa, #f472b6, #fb923c, #a78bfa
+      );
+      background-size: 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: galaxyMove 5s linear infinite;
+    }
+
+    @keyframes galaxyMove {
+      0% { background-position: 0% }
+      100% { background-position: 300% }
+    }
+
+    /* Custom Scrollbar for Results */
+    #results::-webkit-scrollbar {
+      width: 5px;
+    }
+    #results::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    #results::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+    }
+
+    input:focus {
+      box-shadow: 0 0 0 2px rgba(167, 139, 250, 0.4);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="glass-card w-full max-w-[440px] p-8 rounded-[24px] text-center">
+    <h2 class="rainbow-title mb-6">YouTube Bypass</h2>
+
+    <div class="relative mb-4">
+      <input id="search" 
+        class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm transition-all outline-none placeholder:text-gray-500"
+        placeholder="Search for a video or paste link...">
+    </div>
+
+    <button onclick="searchVideos()" 
+      class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3 rounded-xl transition-all active:scale-95 shadow-lg shadow-indigo-500/20">
+      Search Videos
+    </button>
+
+    <div id="results" class="mt-6 max-height-[300px] overflow-y-auto space-y-3">
+        </div>
+
+    <div id="player" class="mt-6 rounded-xl overflow-hidden shadow-2xl border border-white/10"></div>
+  </div>
+
+  <div class="fixed bottom-6 right-6 bg-white/5 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full text-xs font-medium tracking-wide">
+    <span class="opacity-60">Created by</span> 
+    <a href="http://discord.com/users/964647720767868988" target="_blank" class="text-indigo-400 hover:text-indigo-300 transition-colors ml-1">GalaxyXD</a>
+  </div>
+
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script src="script.js"></script>
+</body>
+</html>
