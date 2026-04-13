@@ -6,6 +6,7 @@
   <title>GalaxyXD | YouTube Bypass</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
@@ -17,7 +18,7 @@
 
     body {
       margin: 0;
-      background: #000000;
+      background: radial-gradient(circle at top right, #1e1b4b, #09090b);
       font-family: "Inter", sans-serif;
       min-height: 100vh;
       display: flex;
@@ -27,21 +28,24 @@
       padding: 20px;
     }
 
-    /* Main Glossy Card */
+    /* Glassmorphism Card */
     .glass-card {
-      background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.8) 100%);
-      backdrop-filter: blur(30px) saturate(200%);
-      -webkit-backdrop-filter: blur(30px) saturate(200%);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 32px;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 1);
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
     }
 
+    /* Galaxy Animated Title */
     .rainbow-title {
       font-family: "Starborn", sans-serif;
-      font-size: 34px;
-      letter-spacing: 1.5px;
-      background: linear-gradient(90deg, #a78bfa, #f472b6, #fb923c, #a78bfa);
+      font-size: 32px;
+      letter-spacing: 1px;
+      background: linear-gradient(
+        90deg,
+        #a78bfa, #f472b6, #fb923c, #a78bfa
+      );
       background-size: 300%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -53,97 +57,114 @@
       100% { background-position: 300% }
     }
 
-    /* Glossy Black & White Blended Button */
-    .glossy-btn {
-      position: relative;
-      background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.9) 100%);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      overflow: hidden;
-      transition: all 0.3s ease;
-    }
-
-    /* The "Glossy Layer" Reflection */
-    .glossy-btn::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 50%;
-      background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, transparent 100%);
-      pointer-events: none;
-    }
-
-    .glossy-btn:hover {
-      border-color: rgba(255, 255, 255, 0.5);
-      background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, rgba(10,10,10,1) 100%);
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-    }
-
+    /* CURVED SEARCH RESULTS */
     .video-item {
       display: flex;
       align-items: center;
       gap: 14px;
       padding: 12px;
-      background: rgba(255, 255, 255, 0.03);
-      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 16px; /* High curvature */
       margin-bottom: 12px;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
       border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .video-item:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.12);
+      transform: scale(1.02);
+      border-color: rgba(167, 139, 250, 0.5);
     }
 
     .video-item img {
       width: 100px;
       height: 56px;
-      border-radius: 12px;
+      border-radius: 10px; /* Curved thumbnails */
       object-fit: cover;
     }
 
-    .glass-input {
-      background: rgba(0, 0, 0, 0.6) !important;
-      border: 1px solid rgba(255, 255, 255, 0.1) !important;
-      backdrop-filter: blur(10px);
+    .video-item span {
+      font-size: 14px;
+      font-weight: 500;
+      color: #f1f5f9;
+      text-align: left;
+      line-height: 1.2;
+    }
+
+    /* Custom Scrollbar */
+    #results::-webkit-scrollbar {
+      width: 6px;
+    }
+    #results::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+    }
+
+    #player {
+      border-radius: 16px;
+      overflow: hidden;
+      margin-top: 20px;
+      background: black;
     }
   </style>
 </head>
 
 <body>
-  <div class="glass-card w-full max-w-[480px] p-10 text-center">
-    <h2 class="rainbow-title mb-10">YouTube Bypass</h2>
+  <div class="glass-card w-full max-w-[460px] p-8 rounded-[28px] text-center">
+    <h2 class="rainbow-title mb-8">YouTube Bypass</h2>
 
-    <div class="flex flex-col gap-4">
+    <div class="flex flex-col gap-3">
       <input id="search" 
-        class="glass-input w-full rounded-2xl px-6 py-4 text-sm transition-all outline-none focus:ring-1 focus:ring-white/30 placeholder:text-gray-600 text-white"
-        placeholder="Search videos..."
-        autocomplete="off">
+        class="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-3.5 text-sm transition-all outline-none focus:ring-2 focus:ring-indigo-500/50 placeholder:text-gray-500"
+        placeholder="Search videos...">
       
       <button onclick="searchVideos()" 
-        class="glossy-btn w-full font-bold py-4 rounded-2xl transition-all active:scale-[0.97] text-white tracking-wide">
-        Search
+        class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3.5 rounded-2xl transition-all active:scale-[0.98] shadow-lg shadow-indigo-500/20">
+        Search Galaxy
       </button>
     </div>
 
-    <div id="results" class="mt-8 max-h-[300px] overflow-y-auto pr-2"></div>
-    <div id="player" class="rounded-2xl overflow-hidden mt-6"></div>
+    <div id="results" class="mt-6 max-h-[320px] overflow-y-auto pr-1">
+        </div>
+
+    <div id="player"></div>
   </div>
 
-  <div class="fixed bottom-6 right-6 bg-black/60 backdrop-blur-xl border border-white/10 px-6 py-3 rounded-full text-xs font-medium shadow-2xl">
-    <span class="opacity-40">Created by</span> 
-    <a href="http://discord.com/users/964647720767868988" target="_blank" class="text-white hover:text-indigo-400 transition-colors ml-1 font-bold">GalaxyXD</a>
+  <div class="fixed bottom-6 right-6 bg-white/5 backdrop-blur-md border border-white/10 px-5 py-2.5 rounded-full text-xs font-medium">
+    <span class="opacity-50">Developed by</span> 
+    <a href="http://discord.com/users/964647720767868988" target="_blank" class="text-indigo-400 hover:text-indigo-300 transition-colors ml-1 font-bold">GalaxyXD</a>
   </div>
 
   <script src="https://www.youtube.com/iframe_api"></script>
+  
   <script>
-    const searchInput = document.getElementById('search');
-    searchInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') searchVideos();
-    });
+    // Initialize Lucide Icons if you use them in results
+    lucide.createIcons();
+
+    // Placeholder for your actual search logic
+    function searchVideos() {
+      const query = document.getElementById('search').value;
+      if (!query) return;
+
+      console.log("Searching for:", query);
+      
+      // Example of how your results should be rendered to keep the UI clean:
+      const resultsContainer = document.getElementById('results');
+      
+      // This is a mockup - your script.js will handle the actual API data
+      // Just ensure the template below matches your JS logic
+      /*
+      resultsContainer.innerHTML += `
+        <div class="video-item" onclick="playVideo('ID_HERE')">
+          <img src="thumb_url" />
+          <span>Video Title Example</span>
+        </div>
+      `;
+      */
+    }
+
+    // Reference to your existing script.js
   </script>
   <script src="script.js"></script>
 </body>
