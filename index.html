@@ -6,7 +6,6 @@
   <title>YouTube Bypass</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
@@ -42,10 +41,7 @@
       font-family: "Starborn", sans-serif;
       font-size: 32px;
       letter-spacing: 1px;
-      background: linear-gradient(
-        90deg,
-        #a78bfa, #f472b6, #fb923c, #a78bfa
-      );
+      background: linear-gradient(90deg, #a78bfa, #f472b6, #fb923c, #a78bfa);
       background-size: 300%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -64,7 +60,7 @@
       gap: 14px;
       padding: 12px;
       background: rgba(255, 255, 255, 0.05);
-      border-radius: 16px; /* High curvature */
+      border-radius: 16px;
       margin-bottom: 12px;
       cursor: pointer;
       transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -80,16 +76,8 @@
     .video-item img {
       width: 100px;
       height: 56px;
-      border-radius: 10px; /* Curved thumbnails */
+      border-radius: 10px;
       object-fit: cover;
-    }
-
-    .video-item span {
-      font-size: 14px;
-      font-weight: 500;
-      color: #f1f5f9;
-      text-align: left;
-      line-height: 1.2;
     }
 
     /* Custom Scrollbar */
@@ -116,8 +104,9 @@
 
     <div class="flex flex-col gap-3">
       <input id="search" 
-        class="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-3.5 text-sm transition-all outline-none focus:ring-2 focus:ring-indigo-500/50 placeholder:text-gray-500"
-        placeholder="Search videos...">
+        class="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-3.5 text-sm transition-all outline-none focus:ring-2 focus:ring-indigo-500/50 focus:bg-white/10 placeholder:text-gray-500"
+        placeholder="Search videos..."
+        autocomplete="off">
       
       <button onclick="searchVideos()" 
         class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3.5 rounded-2xl transition-all active:scale-[0.98] shadow-lg shadow-indigo-500/20">
@@ -125,9 +114,7 @@
       </button>
     </div>
 
-    <div id="results" class="mt-6 max-h-[320px] overflow-y-auto pr-1">
-        </div>
-
+    <div id="results" class="mt-6 max-h-[320px] overflow-y-auto pr-1"></div>
     <div id="player"></div>
   </div>
 
@@ -139,33 +126,19 @@
   <script src="https://www.youtube.com/iframe_api"></script>
   
   <script>
-    // Initialize Lucide Icons if you use them in results
-    lucide.createIcons();
+    const searchInput = document.getElementById('search');
 
-    // Placeholder for your actual search logic
-    function searchVideos() {
-      const query = document.getElementById('search').value;
-      if (!query) return;
+    // ⌨️ THE "ENTER" KEY FEATURE
+    searchInput.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            searchVideos();
+        }
+    });
 
-      console.log("Searching for:", query);
-      
-      // Example of how your results should be rendered to keep the UI clean:
-      const resultsContainer = document.getElementById('results');
-      
-      // This is a mockup - your script.js will handle the actual API data
-      // Just ensure the template below matches your JS logic
-      /*
-      resultsContainer.innerHTML += `
-        <div class="video-item" onclick="playVideo('ID_HERE')">
-          <img src="thumb_url" />
-          <span>Video Title Example</span>
-        </div>
-      `;
-      */
-    }
-
-    // Reference to your existing script.js
+    // This calls your actual logic in script.js
+    // If you haven't renamed your function, keep this as searchVideos()
   </script>
+  
   <script src="script.js"></script>
 </body>
 </html>
